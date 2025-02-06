@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="icon" type="image/png" href="sets/EJS-files/icon.png"/>
+	<link rel="stylesheet" href="/resources/header.css">
+	<title>EJS visual spoiler</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			overscroll-behavior: none;
+			background-size: cover;
+			background-attachment: fixed;
+		}
+		.main-content {
+			position: relative;
+			width: 100%;
+			float: left;
+			z-index: 2;
+			justify-items: center;
+		}
+		.sidebar {
+			position: sticky;
+			top: 0;
+			display: none;
+			text-align: center;
+			padding-right: 3%;
+			z-index: 1;
+			justify-items: center;
+		}
+		.sidebar-container {
+			width: 80%;
+			max-width: 375px;
+			position: relative;
+		}
+		.sidebar-h-img {
+			display: none;
+			transform: rotate(90deg);
+			position: absolute;
+			left: 10%;
+			top: 10%;
+			width: 85%;
+		}
+		.sidebar-img {
+			vertical-align: middle;
+			width: 100%;
+		}
+		.close-btn {
+			background: url('img/close.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+			width: 10%;
+			height: 10%;
+			border: none;
+			cursor: pointer;
+			position: absolute;
+			right: 4%;
+		}
+		.close-btn:hover {
+			background: url('img/close-hover.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+		}
+		.grid-container {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+			gap: 2px;
+			padding-left: 5%;
+			padding-right: 5%;
+			padding-bottom: 3%;
+			justify-items: center;
+			max-width: 1200px;
+		}
+		.grid-container img {
+			width: 100%;
+			height: auto;
+			display: block;
+			visibility: hidden;
+			cursor: pointer;
+		}
+		.banner {
+			width: 100%;
+			height: auto;
+			padding-top: 20px;
+			padding-bottom: 50px;
+		}
+		.logo {
+			display: block;
+			margin: auto;
+			max-width: 30%;
+			max-height: 320px;
+		}
+		.container {
+			position: relative;
+			width: 100%;
+		}
+		.container img {
+			width: 100%;
+			height: auto;
+		}
+		.flip-btn {
+			background: url('img/flip.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+			width: 15%;
+			height: 11%;
+			cursor: pointer;
+			border: none;
+			position: absolute;
+			left: 50%;
+			top: 48%;
+			transform: translate(-50%, -50%);
+			opacity: 0.5;
+		}
+		.flip-btn:hover {
+			background: url('img/flip-hover.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+		}
+		.icon-bar {
+			display: grid;
+			grid-template-columns: repeat(10, 3fr 2fr) 3fr;
+			gap: 1px;
+			padding-left: 5%;
+			padding-right: 5%;
+			padding-top: 2%;
+			padding-bottom: 1%;
+			justify-items: center;
+			align-items: center;
+		}
+		.icon-bar .icon img {
+			width: 90%;
+			max-width: 80px;
+			height: auto;
+			display: block;
+			padding: 5%;
+			margin: auto;
+			text-align: center;
+		}
+		.icon-bar .dot img {
+			width: 50%;
+			max-width: 65px;
+			height: auto;
+			display: block;
+			margin: auto;
+			text-align: center;
+		}
+		.preload-hidden {
+			display: none;
+		}
+		/* This is here to enable the stickiness in a Float environment. I don't know why it works but it does */
+		.footer {
+			clear: both;
+		}
+	</style>
+</head>
+<body>
+	<img class="preload-hidden" src="/img/dot.png" />
+	<img class="preload-hidden" src="/sets/EJS-files/logo.png" />
+	<img class="preload-hidden" src="/sets/EJS-files/icon.png" />
+		<div class="header">
+		<div class="search-grid">
+			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
+			<img class="sg-icon" src="/img/search.png">
+			<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
+			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+		</div>
+	</div>
+
+	<div class="icon-bar">
+			<div class="icon"><a href="EJS-spoiler"><img src="sets/EJS-files/icon.png"></img></a></div>
+
+		</div>
+		<div class="banner">
+		<img class="logo" src="sets/EJS-files/logo.png">
+		</div>
+		<div class="main-content" id="main-content">
+			<div class="grid-container">
+				<div class="container"><img alt="sets\EJS-files\img\1_JSW01 Arcframe Prodigy.png" id="1_JSW01 Arcframe Prodigy" data-flag="@X" onclick="openSidebar('1_JSW01 Arcframe Prodigy',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\12_JSU01 Archive Delver.png" id="12_JSU01 Archive Delver" data-flag="@X" onclick="openSidebar('12_JSU01 Archive Delver',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\22_JSB01 Scrap Stripper.png" id="22_JSB01 Scrap Stripper" data-flag="@X" onclick="openSidebar('22_JSB01 Scrap Stripper',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\34_JSR01 Excited Flamescout.png" id="34_JSR01 Excited Flamescout" data-flag="@X" onclick="openSidebar('34_JSR01 Excited Flamescout',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\46_JSG01 Blossoming Ember.png" id="46_JSG01 Blossoming Ember" data-flag="@X" onclick="openSidebar('46_JSG01 Blossoming Ember',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\2_JSW02 Built to Last.png" id="2_JSW02 Built to Last" data-flag="@X" onclick="openSidebar('2_JSW02 Built to Last',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\13_JSU02 Scrapping Drone.png" id="13_JSU02 Scrapping Drone" data-flag="@X" onclick="openSidebar('13_JSU02 Scrapping Drone',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\23_JSB02 Surly Scrapwarden.png" id="23_JSB02 Surly Scrapwarden" data-flag="@X" onclick="openSidebar('23_JSB02 Surly Scrapwarden',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\35_JSR02 Datafire Ember.png" id="35_JSR02 Datafire Ember" data-flag="@X" onclick="openSidebar('35_JSR02 Datafire Ember',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\47_JSG02 Collateral Processor.png" id="47_JSG02 Collateral Processor" data-flag="@X" onclick="openSidebar('47_JSG02 Collateral Processor',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\3_JSW03 Interception Program.png" id="3_JSW03 Interception Program" data-flag="@X" onclick="openSidebar('3_JSW03 Interception Program',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\14_JSU03 Data Manifester.png" id="14_JSU03 Data Manifester" data-flag="@X" onclick="openSidebar('14_JSU03 Data Manifester',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\24_JSB03 Relentless Razorpaw.png" id="24_JSB03 Relentless Razorpaw" data-flag="@X" onclick="openSidebar('24_JSB03 Relentless Razorpaw',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\36_JSR03 Kiln Fiend.png" id="36_JSR03 Kiln Fiend" data-flag="@X" onclick="openSidebar('36_JSR03 Kiln Fiend',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\48_JSG03 Canopy Stalker.png" id="48_JSG03 Canopy Stalker" data-flag="@X" onclick="openSidebar('48_JSG03 Canopy Stalker',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\4_JSW04 Supporting Unit.png" id="4_JSW04 Supporting Unit" data-flag="@X" onclick="openSidebar('4_JSW04 Supporting Unit',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\15_JSU04 Mindfield Surveyor.png" id="15_JSU04 Mindfield Surveyor" data-flag="@X" onclick="openSidebar('15_JSU04 Mindfield Surveyor',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\25_JSB04 Rustpit Repurposer.png" id="25_JSB04 Rustpit Repurposer" data-flag="@X" onclick="openSidebar('25_JSB04 Rustpit Repurposer',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\37_JSR04 Overcharged Sentry.png" id="37_JSR04 Overcharged Sentry" data-flag="@X" onclick="openSidebar('37_JSR04 Overcharged Sentry',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\49_JSG04 Alloyed Monitor.png" id="49_JSG04 Alloyed Monitor" data-flag="@X" onclick="openSidebar('49_JSG04 Alloyed Monitor',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\5_JSW06 Tune Up.png" id="5_JSW06 Tune Up" data-flag="@X" onclick="openSidebar('5_JSW06 Tune Up',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\16_JSU05 Drone Synthesizer.png" id="16_JSU05 Drone Synthesizer" data-flag="@X" onclick="openSidebar('16_JSU05 Drone Synthesizer',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\26_JSB05 Rustpit Desperado.png" id="26_JSB05 Rustpit Desperado" data-flag="@X" onclick="openSidebar('26_JSB05 Rustpit Desperado',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\38_JSR05 Lightning Freerunner.png" id="38_JSR05 Lightning Freerunner" data-flag="@X" onclick="openSidebar('38_JSR05 Lightning Freerunner',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\50_JSG05 Germination Drone.png" id="50_JSG05 Germination Drone" data-flag="@X" onclick="openSidebar('50_JSG05 Germination Drone',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\6_JSW07 Lightflame Engineer.png" id="6_JSW07 Lightflame Engineer" data-flag="@X" onclick="openSidebar('6_JSW07 Lightflame Engineer',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\17_JSU07 Cellscale Drake.png" id="17_JSU07 Cellscale Drake" data-flag="@X" onclick="openSidebar('17_JSU07 Cellscale Drake',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\27_JSB06 Ruthless Technician.png" id="27_JSB06 Ruthless Technician" data-flag="@X" onclick="openSidebar('27_JSB06 Ruthless Technician',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\39_JSR06 Cinder Apprentice.png" id="39_JSR06 Cinder Apprentice" data-flag="@X" onclick="openSidebar('39_JSR06 Cinder Apprentice',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\51_JSG06 Verdant Spirebloom.png" id="51_JSG06 Verdant Spirebloom" data-flag="@X" onclick="openSidebar('51_JSG06 Verdant Spirebloom',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\7_JSW08 Cache Digger.png" id="7_JSW08 Cache Digger" data-flag="@X" onclick="openSidebar('7_JSW08 Cache Digger',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\18_JSU08 Crack the Code.png" id="18_JSU08 Crack the Code" data-flag="@X" onclick="openSidebar('18_JSU08 Crack the Code',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\28_JSB07 Unrelenting Corewalker.png" id="28_JSB07 Unrelenting Corewalker" data-flag="@X" onclick="openSidebar('28_JSB07 Unrelenting Corewalker',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\40_JSR07 CinderTech Wyvern.png" id="40_JSR07 CinderTech Wyvern" data-flag="@X" onclick="openSidebar('40_JSR07 CinderTech Wyvern',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\52_JSG07 Mosstower Behemoth.png" id="52_JSG07 Mosstower Behemoth" data-flag="@X" onclick="openSidebar('52_JSG07 Mosstower Behemoth',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\8_JSW09 Lightflame Knight.png" id="8_JSW09 Lightflame Knight" data-flag="@X" onclick="openSidebar('8_JSW09 Lightflame Knight',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\19_JSU09 Suit Up.png" id="19_JSU09 Suit Up" data-flag="@X" onclick="openSidebar('19_JSU09 Suit Up',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\29_JSB08 Feeding Chamber.png" id="29_JSB08 Feeding Chamber" data-flag="@X" onclick="openSidebar('29_JSB08 Feeding Chamber',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\41_JSR08 Salvaged Mechblade.png" id="41_JSR08 Salvaged Mechblade" data-flag="@X" onclick="openSidebar('41_JSR08 Salvaged Mechblade',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\53_JSG08 Furious Emberguard.png" id="53_JSG08 Furious Emberguard" data-flag="@X" onclick="openSidebar('53_JSG08 Furious Emberguard',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\9_JSW10 Soothing Elementalist.png" id="9_JSW10 Soothing Elementalist" data-flag="@X" onclick="openSidebar('9_JSW10 Soothing Elementalist',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\20_JSU10 Shutdown Protocol.png" id="20_JSU10 Shutdown Protocol" data-flag="@X" onclick="openSidebar('20_JSU10 Shutdown Protocol',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\30_JSB09 Unsuccessful Negotiation.png" id="30_JSB09 Unsuccessful Negotiation" data-flag="@X" onclick="openSidebar('30_JSB09 Unsuccessful Negotiation',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\42_JSR09 Second Charge.png" id="42_JSR09 Second Charge" data-flag="@X" onclick="openSidebar('42_JSR09 Second Charge',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\54_JSG09 Hungerframe.png" id="54_JSG09 Hungerframe" data-flag="@X" onclick="openSidebar('54_JSG09 Hungerframe',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\10_JSW11 Buried in Scrap.png" id="10_JSW11 Buried in Scrap" data-flag="@X" onclick="openSidebar('10_JSW11 Buried in Scrap',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\21_JSU12 Malfunction.png" id="21_JSU12 Malfunction" data-flag="@X" onclick="openSidebar('21_JSU12 Malfunction',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\31_JSB10 Revoke Demise.png" id="31_JSB10 Revoke Demise" data-flag="@X" onclick="openSidebar('31_JSB10 Revoke Demise',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\43_JSR10 Reckless Driving.png" id="43_JSR10 Reckless Driving" data-flag="@X" onclick="openSidebar('43_JSR10 Reckless Driving',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\55_JSG10 Sideswipe.png" id="55_JSG10 Sideswipe" data-flag="@X" onclick="openSidebar('55_JSG10 Sideswipe',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\11_JSW12 Ember Repurposer.png" id="11_JSW12 Ember Repurposer" data-flag="@X" onclick="openSidebar('11_JSW12 Ember Repurposer',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\32_JSB11 Murder.png" id="32_JSB11 Murder" data-flag="@X" onclick="openSidebar('32_JSB11 Murder',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\44_JSR11 Ember Expulsion.png" id="44_JSR11 Ember Expulsion" data-flag="@X" onclick="openSidebar('44_JSR11 Ember Expulsion',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\56_JSG11 Grafted Growth.png" id="56_JSG11 Grafted Growth" data-flag="@X" onclick="openSidebar('56_JSG11 Grafted Growth',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\33_JSB12 Clean Off the Rust.png" id="33_JSB12 Clean Off the Rust" data-flag="@X" onclick="openSidebar('33_JSB12 Clean Off the Rust',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\45_JSR12 Untimely Malfunction.png" id="45_JSR12 Untimely Malfunction" data-flag="@X" onclick="openSidebar('45_JSR12 Untimely Malfunction',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\57_JSG12 Unworldly Fortification.png" id="57_JSG12 Unworldly Fortification" data-flag="@X" onclick="openSidebar('57_JSG12 Unworldly Fortification',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\58_JSU06 Circuit Mender.png" id="58_JSU06 Circuit Mender" data-flag="@X" onclick="openSidebar('58_JSU06 Circuit Mender',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\59_JSU11 Drone Station.png" id="59_JSU11 Drone Station" data-flag="@X" onclick="openSidebar('59_JSU11 Drone Station',false)"></div>
+			<div class="container"><img alt="sets\EJS-files\img\60_JSW05 Rusting Frame.png" id="60_JSW05 Rusting Frame" data-flag="@X" onclick="openSidebar('60_JSW05 Rusting Frame',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+	</div>
+</div>
+	<div class="sidebar" id="sidebar">
+		<div class="sidebar-container">
+			<img id="sidebar_img" class="sidebar-img" src="img/er.png">
+			<img id="sidebar_h_img" class="sidebar-h-img">
+			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
+		</div>
+		<button class="close-btn" onclick="closeSidebar()"></button>
+	</div>
+	<div class="footer"></div>
+
+	<script>
+	const delay = ms => new Promise(res => setTimeout(res, ms));
+		let specialchars = "";
+
+	document.addEventListener('DOMContentLoaded', async function() {
+		await fetch('/lists/all-cards.json')
+					.then(response => response.json())
+					.then(json => {
+						card_list = json;
+				}).catch(error => console.error('Error:', error));
+
+				await fetch('/resources/replacechars.txt')
+					.then(response => response.text())
+					.then(text => {
+						specialchars = text; 
+				}).catch(error => console.error('Error:', error));
+
+				card_list_arrayified = card_list.cards;
+
+		preloadImgs = document.getElementsByClassName('preload-hidden');
+		
+		let images_loaded = [];
+
+		do {
+			await delay(100);
+			images_loaded = []
+			for (const img of preloadImgs)
+			{
+				images_loaded.push(isImageOk(img));
+			}
+		}
+		while (images_loaded.includes(false));
+
+		
+		loadImages();
+	});
+
+	function isImageOk(img) {
+		if (!img.complete || img.naturalWidth == 0) {
+			return false;
+		}
+
+		return true;
+	}
+
+	function loadImages() {
+		const images = document.querySelectorAll('.grid-container img');
+
+		images.forEach(img => {
+			const flag = img.getAttribute('data-flag');
+
+			if (flag === '@N') {
+				img.src = 'img/card_back.png';
+				img.removeAttribute("onclick");
+				img.style.cursor = 'default';
+			}
+			else
+			{
+				img.src = img.alt;
+
+				if (flag === '@E') {
+					img.removeAttribute("onclick");
+					img.style.cursor = 'default';
+				}
+			}
+
+			img.style.visibility = 'visible';
+		});
+	}
+
+	window.addEventListener('resize', function(event) {
+		setSidebarTop();
+	}, true);
+
+	function setSidebarTop() {
+		let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+		let sh = document.getElementById('sidebar').offsetHeight;
+		let height = 100 * ((vh - sh) / 2) / vh;
+		document.getElementById('sidebar').style.top = height + '%';
+	}
+
+	let horizontal = false;
+
+	function imgFlip(num) {
+		tmp = document.getElementById(num).src;
+		document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
+		document.getElementById(num).dataset.alt_src = tmp;
+
+		const rotated_img = document.getElementById('sidebar_h_img');
+		const sidebar_img = document.getElementById('sidebar_img');
+
+		if (horizontal && rotated_img.style.display == 'none')
+		{
+			rotated_img.style.display = "block";
+			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
+		}
+		else
+		{
+			rotated_img.style.display = "none";
+			sidebar_img.style.filter = "";
+		}
+	}
+
+	function openSidebar(id, h=false) {
+		horizontal = h;
+		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+		
+		document.getElementById('sidebar').style.display = 'grid';
+
+		const rotated_img = document.getElementById('sidebar_h_img');
+		const sidebar_img = document.getElementById('sidebar_img');
+
+		sidebar_img.src = document.getElementById(id).src;
+
+		if (horizontal)
+		{
+			rotated_img.src = document.getElementById(id).src;
+			rotated_img.style.display = "block";
+			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
+		}
+		else
+		{
+			rotated_img.style.display = "none";
+			sidebar_img.style.filter = "";
+		}
+
+		if (document.getElementById(id).dataset.alt_src)
+		{
+			document.getElementById('sidebar_img').dataset.alt_src = document.getElementById(id).dataset.alt_src;
+			document.getElementById('sidebar-flip-btn').style.display = 'block';
+		}
+		else
+		{
+			delete document.getElementById('sidebar_img').dataset.alt_src;
+			document.getElementById('sidebar-flip-btn').style.display = 'none';
+		}
+		document.getElementById('main-content').style.width = '60%';
+		
+		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+		window.scrollTo(window.scrollX, scroll_pos);
+		setSidebarTop();
+	}
+
+	function closeSidebar() {
+		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+
+		document.getElementById('sidebar').style.display = 'none';
+		document.getElementById('main-content').style.width = '100%';
+		
+
+		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+		window.scrollTo(window.scrollX, scroll_pos);
+	}
+
+	document.getElementById("search").addEventListener("keypress", function(event) {
+			if (event.key === "Enter") {
+				event.preventDefault();
+				search();
+			}
+		});
+
+		function search() {
+			window.location = ("/search?search=" + document.getElementById("search").value);
+		}
+
+		function randomCard() {
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let card_name = card_list_arrayified[i].card_name;
+				for (const char of specialchars)
+				{
+					card_name = card_name.replaceAll(char, "");
+				}
+
+				window.location = ('/cards/' + card_list_arrayified[i].set + '/' + card_list_arrayified[i].number + '_' + card_name);
+			}
+	</script>
+</body>
+</html>
